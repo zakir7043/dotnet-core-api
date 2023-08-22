@@ -64,7 +64,7 @@ namespace TodoApi
 
             app.UseAuthorization();
 
-            SecretClientOptions options = new SecretClientOptions()
+         /*   SecretClientOptions options = new SecretClientOptions()
             {
                 Retry =
                 {
@@ -78,7 +78,7 @@ namespace TodoApi
             
             KeyVaultSecret secret = client.GetSecret("AppSecret");
             
-            string secretValue = secret.Value;
+            string secretValue = secret.Value;*/
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
