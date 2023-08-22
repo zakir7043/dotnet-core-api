@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using Azure.Core;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,6 +63,21 @@ namespace TodoApi
 
             app.UseAuthorization();
 
+            SecretClientOptions options = new SecretClientOptions()
+            {
+                Retry =
+                {
+                    Delay= TimeSpan.FromSeconds(2),
+                    MaxDelay = TimeSpan.FromSeconds(16),
+                    MaxRetries = 5,
+                    Mode = RetryMode.Exponential
+                }
+            };
+            var client = new SecretClient(new Uri("https://zzszdzdsdsz.vault.azure.net/"), new DefaultAzureCredential(),options);
+            
+            KeyVaultSecret secret = client.GetSecret("AppSecret");
+            
+            string secretValue = secret.Value;
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
