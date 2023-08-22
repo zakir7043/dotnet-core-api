@@ -2,7 +2,7 @@ using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Azure.Core;
 using System;
-using System.uri;
+using System.Uri;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
