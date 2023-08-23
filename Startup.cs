@@ -25,7 +25,7 @@ namespace TodoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            SecretClientOptions options = new SecretClientOptions()
+            /*SecretClientOptions options = new SecretClientOptions()
             {
                 Retry =
                 {
@@ -39,13 +39,14 @@ namespace TodoApi
             
             KeyVaultSecret secret = client.GetSecret("AppSecret");
             
-            string secretValue = secret.Value;
+            string secretValue = secret.Value;*/
             services.AddControllers();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = secretValue });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                //c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = secretValue });
             });
 
             services.AddDbContext<TodoContext>(options => options.UseInMemoryDatabase("TodoList"));
