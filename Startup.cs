@@ -35,7 +35,7 @@ namespace TodoApi
                     Mode = RetryMode.Exponential
                 }
             };
-            var client = new SecretClient(new Uri("https://myKV9898.vault.azure.net/"), new DefaultAzureCredential(),options);
+            var client = new SecretClient(new Uri("https://mykeyvault89.vault.azure.net/"), new DefaultAzureCredential(),options);
             
             KeyVaultSecret secret = client.GetSecret("AppSecret");
             
